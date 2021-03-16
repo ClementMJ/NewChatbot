@@ -1,13 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const token = 'EAAC1KvyfFY8BALLNXPpILTw80aeCFctHhUAJm4I3jMm2teHKWOdt1FEEYi0oZA1Ceb73fkdd1fHvU8fcs3K4mOdZBnyLnUTRkiEGKiFCT7W7RzbobBRWnwRYPfZALZBQz24prbZBsf6n5EmHTVmG1rvuOf4RMy7F9Us1QGQO89gZDZD'
+const PAGE_ACCESS_TOKEN = 'EAAC1KvyfFY8BALLNXPpILTw80aeCFctHhUAJm4I3jMm2teHKWOdt1FEEYi0oZA1Ceb73fkdd1fHvU8fcs3K4mOdZBnyLnUTRkiEGKiFCT7W7RzbobBRWnwRYPfZALZBQz24prbZBsf6n5EmHTVmG1rvuOf4RMy7F9Us1QGQO89gZDZD'
+const VERIFY_TOKEN = 'pusher-bot'
+const TOKEN_WIT = 'LJLNWMZIVZEY7AG7OJBU3Y4YJNDYH467'
 
 request = require('request');
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 
 // Respond with 'Hello World' when a GET request is made to the homepage
@@ -174,4 +175,8 @@ app.listen(6000, () => console.log('Express server is listening on port 6000'));
 
 //curl -X GET "https://15b21fc750d0.ngrok.io/webhook?hub.verify_token=EAAG6X8CXpBMBADrcxBGWQZCZCVMUJbM5ZCd9Hxc2jbTo6mhXQCaZAitGKxXeB8MHTAnbkP1l30gVYQhmZBx8RK2Az9soxhJCo0A3hG40ow9rUtozhF3ztbhPtErSD1sZAWKWwRqeC2PZAF6UZAR8AnuepWGeCouvBWXCFaTbh2sBs7qa99MFggvCJ2hyS7ZCi608ZD&hub.challenge=CHALLENGE_ACCEPTED&hub.mode=subscribe"
 //curl -H "Content-Type: application/json" -X POST "https://15b21fc750d0.ngrok.io/webhook" -d '{"object": "page", "entry": [{"messaging": [{"message": "TEST_MESSAGE"}]}]}'
+
+
+
+
 
