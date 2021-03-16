@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const PAGE_ACCESS_TOKEN = 'EAAC1KvyfFY8BALLNXPpILTw80aeCFctHhUAJm4I3jMm2teHKWOdt1FEEYi0oZA1Ceb73fkdd1fHvU8fcs3K4mOdZBnyLnUTRkiEGKiFCT7W7RzbobBRWnwRYPfZALZBQz24prbZBsf6n5EmHTVmG1rvuOf4RMy7F9Us1QGQO89gZDZD'
-const VERIFY_TOKEN = 'pusher-bot'
+const token = 'EAAC1KvyfFY8BAGqDGYCwjzGOcBbzBewU1RijCXMuhNcCyYOjM5XAXdvNEvGLph6MaZArzv0aNI9gH1Ra0uOJ4Ks4f1YmiShoUIjgrcBHdFVecP2cBHZCJ7SQQQpErYhkWt7GwqdJRZC3JhlUU98jXDf33n7v7U9faZB8jJahJQZDZD'
+const verify = 'pusher-bot'
 const TOKEN_WIT = 'LJLNWMZIVZEY7AG7OJBU3Y4YJNDYH467'
 
 request = require('request');
@@ -20,7 +20,7 @@ app.get('/', function (_req, res) {
 app.get('/webhook', (req, res) => {
 
     // Your verify token. Should be a random string.
-    const VERIFY_TOKEN = 'pusher-bot';
+    const VERIFY_TOKEN = verify;
 
     // Parse the query params
     let mode = req.query['hub.mode'];
