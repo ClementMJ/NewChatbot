@@ -66,6 +66,8 @@ app.post('/webhook', (req, res) => {
         // pass the event to the appropriate handler function
         if (webhookEvent.message) {
             handleMessage(senderPsid, webhookEvent.message);
+            console.log('Ca rentre ici ? ')
+
         } else if (webhookEvent.postback) {
             handlePostback(senderPsid, webhookEvent.postback);
             console.log('Ca rentre ici ? ')
@@ -80,10 +82,32 @@ app.post('/webhook', (req, res) => {
         res.sendStatus(404);
     }
 });
-  
+const extractEntity = (nlp, entity) => {
+    if(nlp.intents[0].confidence > 0.8){
+        if(entity == 'intent'){
+            return nlp.intents[0].name
+        }
+        else{
+            try{
+                return nlp.entities[entity+':'+entity][0].body
+            }
+            catch(e){//If entity does not exist
+                return null
+            }
+
+        }
+    }else{
+        return null
+    }
+}
 // Handles messages events
 function handleMessage(senderPsid, receivedMessage) {
 let response;
+if(typeof receivedMessage.nlp != "undefined"){
+    extractEntity(receivedMessage.nlp)
+    console.log('nlp : ' + receivedMessage.nlp.entities)
+    
+}
 
 // Checks if the message contains text
 if (receivedMessage.text) {
