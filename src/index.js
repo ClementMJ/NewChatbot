@@ -66,11 +66,9 @@ app.post('/webhook', (req, res) => {
         // pass the event to the appropriate handler function
         if (webhookEvent.message) {
             handleMessage(senderPsid, webhookEvent.message);
-            console.log('Ca rentre ici ? ')
 
         } else if (webhookEvent.postback) {
             handlePostback(senderPsid, webhookEvent.postback);
-            console.log('Ca rentre ici ? ')
         }
         });
 
@@ -82,31 +80,26 @@ app.post('/webhook', (req, res) => {
         res.sendStatus(404);
     }
 });
-const extractEntity = (nlp, entity) => {
-    if(nlp.intents[0].confidence > 0.8){
-        if(entity == 'intent'){
-            return nlp.intents[0].name
-        }
-        else{
-            try{
-                return nlp.entities[entity+':'+entity][0].body
-            }
-            catch(e){//If entity does not exist
-                return null
-            }
 
-        }
-    }else{
-        return null
-    }
-}
 // Handles messages events
 function handleMessage(senderPsid, receivedMessage) {
 let response;
 if(typeof receivedMessage.nlp != "undefined"){
-    extractEntity(receivedMessage.nlp)
-    console.log('nlp : ' + receivedMessage.nlp.entities)
-    
+    console.log('Entities : ' + JSON.stringify(receivedMessage.nlp.entities));             //007
+    console.log('name intents : ' + receivedMessage.nlp.intents[0].name)
+    console.log('body entities : ' + receivedMessage.nlp.entities)
+    intentsName = receivedMessage.nlp.intents[0].name
+    //console.log('nlp entities : ' + JSON.parse(JSON.stringify(receivedMessage.nlp.entities)))
+    console.log('nlp entities lieu : ' + JSON.stringify(receivedMessage.nlp.entities.lieu))
+    if (receivedMessage.nlp.entities.hasOwnProperty("lieu")){
+        console.log('Ca dit quoi : ' + receivedMessage.nlp.entities.lieu);             //007
+    }
+    //console.log('nlp entities 2 : ' + JSON.parse(receivedMessage.nlp.entities))
+
+    console.log('nlp intent : ' + JSON.stringify(receivedMessage.nlp.intents))
+    console.log('nlp detected_locales : ' + JSON.stringify(receivedMessage.nlp.detected_locales))
+    //const 
+
 }
 
 // Checks if the message contains text
