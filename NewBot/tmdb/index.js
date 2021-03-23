@@ -22,14 +22,17 @@ module.exports = nlpData => {
                         resolve(randomRep)
                         break;
 
-                    case 'random_selection' :
+                    case 'random_selection':
 
                         console.log('ici')
                         let random_select = await getSelection10Random('random')
                         console.log(random_select)
-                        forEach(random_sel in random_select.drinks) = names => {
-                            names += random_sel.strDrink
-                        }
+                        let names = ""
+                        random_select.drinks.forEach(element => {
+                            names += element.strDrink+"\n"
+                            
+                        });
+
                         //res4 = random_select.drinks[0].strInstructions
                         console.log('names : ' + names )
                         let random_selectRep = "Nom du cocktail : "+names 
@@ -71,7 +74,19 @@ module.exports = nlpData => {
 
                         break;
 
-                    case '' :
+                    case 'latest_cocktails' :
+                        
+                        let latest_select = await getLatest('latest')
+                        let names_latest = ""
+                        latest_select.drinks.forEach(element => {
+                            names_latest += element.strDrink+"\n"
+                            
+                        });
+                        let random_selectlatest = "Nom des cocktails dernierement sortis  : "+names_latest 
+                        //+". Recette : "+ res2
+                        resolve(random_selectlatest)
+                        break;
+                        getLatest
                         break;
                     case '' :
                         break;
@@ -149,6 +164,16 @@ const getPopular = blc =>{
 }
 
 const getSelection10Random = random => {
+    return new Promise(async (resolve, reject) => {
+        let req = url + 'randomselection.php' + config.TMDB
+        axios.get(req).then(res => {
+            resolve(res.data)
+        }).catch(err => {
+            reject(err)
+        })
+    })
+}
+const getLatest= latest => {
     return new Promise(async (resolve, reject) => {
         let req = url + 'randomselection.php' + config.TMDB
         axios.get(req).then(res => {
