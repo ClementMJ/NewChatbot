@@ -12,14 +12,14 @@ let f = new FBeamer(conf.FB)
 const movieData = require('./tmdb')
 
 const menu =  `🍹Here is the menu🍹\n \nI'm an assistant Chatbot to help in your cocktail searching 🤖
-\nHere are the features I can provide : 
+\nHere are the features I can provide 🚀🚀 : 
 \n-Search a cocktail by name
-\n-Suggesting a random cocktail
-\n-Search a cocktail by alcohol type
+\n🌴-Suggesting a random cocktail 🌴
+\n🔞-Search a cocktail by alcohol type🔞
 \n-Give you the 10 last realesed cocktails
-\n-Non alcohol cocktail 
-\n-One of the most popular cocktails 
-\nI can give you the recipe and the ingredients of a cocktail too :) `
+\n-Non alcohol cocktail 🥦🤮
+\n-☢️One of the most popular cocktails☢️
+\nI can give you the recipe and the ingredients of a cocktail too 💯💯:) `
 
 "🕵️‍♀️🥦🏉🤮🏆🚀🏖💣🎁☣️☢️🔞🚼❎⛔️💯🌴🏝"
 server.get('/', (req, res) => f.registerHook(req, res))
@@ -27,6 +27,7 @@ server.get('/', (req, res) => f.registerHook(req, res))
 server.post('/', bodyparser.json({
     verify: f.verifySignature.call(f)
 }))
+
 c = 0
 server.post('/', (req, res, next) => {
     
