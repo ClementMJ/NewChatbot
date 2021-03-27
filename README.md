@@ -18,7 +18,7 @@ Example:
 •	If you want: "Search a cocktail by name", you can write: "Tell me more about the Margarita cocktail".
 •	Or if you want: "One of the most popular cocktails", you can write: "Give me a popular cocktail".
 
-##How to connect ? :
+## How to connect ? :
 
 Firstly you need to download our code.
 Now you have to run server.js using nodemon
