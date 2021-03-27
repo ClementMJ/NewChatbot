@@ -17,3 +17,11 @@ Example:
 
 •	If you want: "Search a cocktail by name", you can write: "Tell me more about the Margarita cocktail".
 •	Or if you want: "One of the most popular cocktails", you can write: "Give me a popular cocktail".
+
+##How to connect ? :
+
+Firstly you need to download our code.
+Now you have to run server.js using nodemon
+In order to get messenger be able to interact with our code, we have to set a public url with ngrok. To do so, download it and write in an new console ngrok http 3000(this the port where our api is listening). With this public url you have to set up in facebook developer a back up url and connect the wit.ai service. 
+Finally you can go on facebook on this url: https://www.facebook.com/New_Chatbot-106581561513289/ and try to interact with our chatbot.
+
