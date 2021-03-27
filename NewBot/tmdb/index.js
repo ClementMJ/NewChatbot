@@ -9,17 +9,20 @@ let url = 'https://www.thecocktaildb.com/api/json/v2/9973533/'
 module.exports = nlpData => {
     return new Promise(async (resolve, reject) => {
         let intent = extractEntity(nlpData, 'intent')
-
+        console.log(intent)
         if(intent){
             try{
                 switch (intent) {
                     case 'aleatoire' :
-
-                        let random = await getRandom('random')
-                        res = random.drinks[0].strDrink
-                        res2 = random.drinks[0].strInstructions
-                        let randomRep = "Nom du cocktail : "+res +". Recette : "+ res2
-                        resolve(randomRep)
+                        console.log("la")
+                        let TEST1 = await getRandom('random')
+                        TEST2 = TEST1.drinks
+                        RES12 = TEST2[0].strDrink
+                        RES13 = TEST2[0].strInstructions
+                        RES14 = getIngredients(TEST1)
+                        
+                        let RANDOMREP1 = "Nom du cocktail : "+RES12 +". Recette : "+ RES13 + ". \n Ingredients : "+ RES14
+                        resolve(RANDOMREP1)
                         break;
 
                     case 'random_selection':
@@ -57,11 +60,16 @@ module.exports = nlpData => {
                         break;
                     case 'cocktail_sans_alcool' :
 
+                        console.log('la')
                         let res = await getSansAlcool('sansalcool')
                         console.log(res)
                         let j = Math.floor(Math.random() * res.drinks.length); 
                         withoutAlc = 'Name of the drink without alcool : ' +res.drinks[j].strDrink
+                        WITHOUT_NAME = await getByName(res.drinks[j].strDrink)
+                        console.log('NAME : ' + WITHOUT_NAME)
+                        WITHOUT_ING = getIngredients(WITHOUT_NAME)
                         //let image = await getImage(res.drinks[i].strDrinkThumb+"/preview")
+                        withoutAlc = withoutAlc + " \nIngredients : " + WITHOUT_ING + " \nInstructions : " + WITHOUT_NAME.drinks[0].strInstructions
                         resolve(withoutAlc)
 
                         break;
@@ -69,7 +77,10 @@ module.exports = nlpData => {
 
                         let popular = await getPopular('popular')
                         let k = Math.floor(Math.random() * popular.drinks.length); 
-                        popularRep = 'Popular cocktail : ' + popular.drinks[k].strDrink + '\nAnd his recipe : ' + popular.drinks[k].strInstructions
+                        popular_name = await getByName(popular.drinks[k].strDrink)
+                        popular_ing = getIngredients(popular_name)
+                        //let image = await getImage(res.drinks[i].strDrinkThumb+"/preview")
+                        popularRep = 'Popular cocktail : ' + popular.drinks[k].strDrink + '\nAnd his recipe : ' + popular.drinks[k].strInstructions + '\nIngredients : ' + popular_ing
                         resolve(popularRep)
 
                         break;
@@ -86,9 +97,13 @@ module.exports = nlpData => {
                         //+". Recette : "+ res2
                         resolve(random_selectlatest)
                         break;
-                        getLatest
-                        break;
-                    case '' :
+
+                    case 'getbyname' :
+                        let entityName = extractEntity(nlpData, 'name')
+                        //console.log(entityName)
+                        myname = await getByName(entityName)
+                        name_rep = 'Name cocktail : ' + myname.drinks[0].strDrink + '\nAnd his recipe : ' + myname.drinks[0].strInstructions 
+                        resolve(name_rep)
                         break;
                     case '' :
                         break;
