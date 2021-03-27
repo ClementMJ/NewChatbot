@@ -12,14 +12,14 @@ let f = new FBeamer(conf.FB)
 const movieData = require('./tmdb')
 
 const menu =  `🍹Here is the menu🍹\n \nI'm an assistant Chatbot to help in your cocktail searching 🤖
-\nHere are the features I can provide 🚀🚀 : 
-\n-Search a cocktail by name
-\n🌴-Suggesting a random cocktail 🌴
-\n🔞-Search a cocktail by alcohol type🔞
-\n-Give you the 10 last realesed cocktails
-\n-Non alcohol cocktail 🥦🤮
-\n-☢️One of the most popular cocktails☢️
-\nI can give you the recipe and the ingredients of a cocktail too 💯💯:) `
+\n🚀Here are the features I can provide 🚀 : 
+\n1/ 🕵️‍♀️Search a cocktail by name 🕵️‍♀️
+\n2/ 🌴Suggesting a random cocktail 🌴
+\n3/ 🔞Search a cocktail by alcohol type 🔞
+\n4/ 🎁Give you the 10 last realesed cocktails 🎁
+\n5/ 🥦Non alcohol cocktail 🤮
+\n6/ ☢️One of the most popular cocktails☢️
+\n7/ 💯I can give you the recipe and the ingredients of a cocktail too 💯:) `
 
 "🕵️‍♀️🥦🏉🤮🏆🚀🏖💣🎁☣️☢️🔞🚼❎⛔️💯🌴🏝"
 server.get('/', (req, res) => f.registerHook(req, res))
@@ -44,9 +44,6 @@ server.post('/', (req, res, next) => {
                     c= c+1
                 }
                 
-                else if(data.message.text == 'Image'){
-                    await f.img(data.sender, 'https://cdn.discordapp.com/attachments/580315649398800384/710457679046377472/B9720724098Z.png')
-                }
                 else if(data.message.nlp.intents.length != 0){
                     movieData(data.message.nlp).then(response => {
                         f.txt(data.sender, response)
@@ -71,3 +68,4 @@ server.listen(PORT, () => {
     console.log("The server is running on port " + PORT)
 })
 
+ 

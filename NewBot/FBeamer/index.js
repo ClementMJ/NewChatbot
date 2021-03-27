@@ -34,7 +34,7 @@ class FBeamer{
                 content: message.text,
                 nlp: nlp
             }
-        }
+        } 
         return obj
     }
 

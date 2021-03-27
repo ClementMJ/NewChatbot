@@ -21,7 +21,7 @@ module.exports = nlpData => {
                         RES13 = TEST2[0].strInstructions
                         RES14 = getIngredients(TEST1)
                         
-                        let RANDOMREP1 = "Nom du cocktail : "+RES12 +". Recette : "+ RES13 + ". \n Ingredients : "+ RES14
+                        let RANDOMREP1 = "🏖Nom du cocktail : "+RES12 +". Recette : "+ RES13 + ". \n Ingredients : "+ RES14 + " 🏖"
                         resolve(RANDOMREP1)
                         break;
 
@@ -38,7 +38,7 @@ module.exports = nlpData => {
 
                         //res4 = random_select.drinks[0].strInstructions
                         console.log('names : ' + names )
-                        let random_selectRep = "Nom du cocktail : "+names 
+                        let random_selectRep = "💣Nom du cocktail : "+names +" 💣"
                         //+". Recette : "+ res2
                         resolve(random_selectRep)
                         break;
@@ -48,12 +48,12 @@ module.exports = nlpData => {
                         let alcooltype = extractEntity(nlpData,'Alcool')
                         let type = await getAlcoolByType(alcooltype)
                         let i = Math.floor(Math.random() * type.drinks.length); 
-                        byAlcool = 'Name of the drink : ' +type.drinks[i].strDrink+ "\n"
+                        byAlcool = '🚀Name of the drink : ' +type.drinks[i].strDrink+ "\n"
                         cock_resp = await getByName(type.drinks[i].strDrink)
                         recipe = cock_resp.drinks[0].strInstructions
-                        byAlcool += `Here is the recipe for ${type.drinks[i].strDrink}: ` + recipe+"\n"
+                        byAlcool += `🏉Here is the recipe for ${type.drinks[i].strDrink}: \n ` + recipe+"\n"
                         ingredients =  getIngredients(cock_resp)
-                        byAlcool+= "Here are the ingredients you might need : "+ingredients
+                        byAlcool+= "🌴Here are the ingredients you might need : "+ingredients
                         //let image = await getImage(type.drinks[i].strDrinkThumb)
                         resolve(byAlcool)
 
@@ -64,7 +64,7 @@ module.exports = nlpData => {
                         let res = await getSansAlcool('sansalcool')
                         console.log(res)
                         let j = Math.floor(Math.random() * res.drinks.length); 
-                        withoutAlc = 'Name of the drink without alcool : ' +res.drinks[j].strDrink
+                        withoutAlc = '🚼Name of the drink without alcool : ' +res.drinks[j].strDrink
                         WITHOUT_NAME = await getByName(res.drinks[j].strDrink)
                         console.log('NAME : ' + WITHOUT_NAME)
                         WITHOUT_ING = getIngredients(WITHOUT_NAME)
@@ -80,7 +80,7 @@ module.exports = nlpData => {
                         popular_name = await getByName(popular.drinks[k].strDrink)
                         popular_ing = getIngredients(popular_name)
                         //let image = await getImage(res.drinks[i].strDrinkThumb+"/preview")
-                        popularRep = 'Popular cocktail : ' + popular.drinks[k].strDrink + '\nAnd his recipe : ' + popular.drinks[k].strInstructions + '\nIngredients : ' + popular_ing
+                        popularRep = '🎁Popular cocktail : ' + popular.drinks[k].strDrink + '\nAnd his recipe : ' + popular.drinks[k].strInstructions + '\nIngredients : ' + popular_ing +"🎁"
                         resolve(popularRep)
 
                         break;
@@ -93,16 +93,15 @@ module.exports = nlpData => {
                             names_latest += element.strDrink+"\n"
                             
                         });
-                        let random_selectlatest = "Nom des cocktails dernierement sortis  : "+names_latest 
+                        let random_selectlatest = "🏆Nom des cocktails dernierement sortis  : "+names_latest +" 🏆"
                         //+". Recette : "+ res2
                         resolve(random_selectlatest)
                         break;
-
                     case 'getbyname' :
                         let entityName = extractEntity(nlpData, 'name')
                         //console.log(entityName)
                         myname = await getByName(entityName)
-                        name_rep = 'Name cocktail : ' + myname.drinks[0].strDrink + '\nAnd his recipe : ' + myname.drinks[0].strInstructions 
+                        name_rep = '☢️Name cocktail : ' + myname.drinks[0].strDrink + '\nAnd his recipe : ' + myname.drinks[0].strInstructions +" ☢️"
                         resolve(name_rep)
                         break;
                     case '' :
